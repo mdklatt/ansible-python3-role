@@ -1,0 +1,7 @@
+# Ignore pytest cache files.
+
+.pytest_cache/
+
+# Ignore Vagrant files
+
+vagrant/
