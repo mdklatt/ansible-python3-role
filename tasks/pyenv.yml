@@ -22,13 +22,15 @@
           eval "$(pyenv virtualenv-init -)"
       
     - name: run login file
-      command: "{{ ansible_user_shell }} {{ python3_shellrc }}"
+      shell: . {{ python3_shellrc }}
       
+    # FIXME: Broken for Ubuntu: [Errno 2] No such file or directory  
     - name: update pyenv
       command: pyenv update
 
 
-- meta: end_play  # FIXME
-     
+- meta: end_play
+
+# FIXME: Broken for CentOS and Ubuntu; need additional libraries
 - name: install Python
   command: "pyenv install {{ python3_pyenv }}"
