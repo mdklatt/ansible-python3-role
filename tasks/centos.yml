@@ -1,0 +1,43 @@
+## CentOS tasks.
+##
+- name: requirements for Python install
+  block:
+
+    - name: install addtional repos
+      become: true
+      yum:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+      with_items:
+        - https://centos7.iuscommunity.org/ius-release.rpm
+
+    - name: install system packages
+      become: true
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - python36u
+        - python36u-pip
+    
+    - name: install pip
+      become: true
+      command: "{{ python3_command }} -m ensurepip"            
+                
+  when: python3_pyenv == None
+      
+      
+- name: requirements for pyenv install
+  block:
+
+    - name: install system packages for pyenv
+      become: true
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - git
+        - zlib-devel
+
+  when: python3_pyenv != None

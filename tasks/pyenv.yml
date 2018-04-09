@@ -1,0 +1,34 @@
+## Install Python using pyenv.
+##
+- name: install pyenv
+  block:
+    
+    - name: download installer
+      get_url:
+        url: https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
+        dest: "{{ python3_tmpdir }}"
+
+    - name: run installer
+      command: "bash pyenv-installer"
+      args:
+        chdir: "{{ python3_tmpdir }}"
+        
+    - name: update login file
+      blockinfile:
+        path: "{{ python3_shellrc }}"
+        block: |
+          export PATH="{{ ansible_user_dir }}/.pyenv/bin:$PATH"
+          eval "$(pyenv init -)"
+          eval "$(pyenv virtualenv-init -)"
+      
+    - name: run login file
+      command: "{{ ansible_user_shell }} {{ python3_shellrc }}"
+      
+    - name: update pyenv
+      command: pyenv update
+
+
+- meta: end_play  # FIXME
+     
+- name: install Python
+  command: "pyenv install {{ python3_pyenv }}"

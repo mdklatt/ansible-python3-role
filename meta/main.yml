@@ -1,25 +1,26 @@
 ## Metadata for the python3 role.
 ##
-dependencies: []
-  # List your role dependencies here, one per line.
-  # Be sure to remove the '[]' above if you add dependencies
-  # to this list.
+dependencies:
+  - mdklatt.tmpdir
 
 galaxy_info:
   author: Michael Klatt
   description:
-  version: 0.1.0.dev0
+  version: 0.1.0.dev1
   license: MIT
   min_ansible_version: 2.4
 
+  # The role has been tested with these platforms, but this list is not
+  # exhaustive.
   platforms:
     - name: EL
       versions:
         - 7
     - name: Ubuntu
       versions:
-        - trusty  # 14.04
+        # TODO: trusty  # 14.04
 
   galaxy_tags:
+    - python
+    - python3
     - system
-    - data
