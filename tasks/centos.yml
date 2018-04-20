@@ -39,5 +39,12 @@
       with_items:
         - git
         - zlib-devel
-
+        - openssl-devel 
+        - openssl-static
+        - sqlite-devel
+        - bzip2-devel 
+        - bzip2-libs
+        - readline-devel 
+        - readline-static
+                
   when: python3_pyenv != None

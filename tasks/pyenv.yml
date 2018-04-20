@@ -1,35 +1,45 @@
 ## Install Python using pyenv.
 ##
-- name: install pyenv
+- name: pyenv installation of Python
   block:
-    
-    - name: download installer
-      get_url:
-        url: https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
-        dest: "{{ python3_tmpdir }}"
+  
+    - name: install pyenv
+      block:
 
-    - name: run installer
-      command: "bash pyenv-installer"
-      args:
-        chdir: "{{ python3_tmpdir }}"
-        
-    - name: update login file
-      blockinfile:
-        path: "{{ python3_shellrc }}"
-        create: true
-        block: |
-          export PATH="{{ ansible_user_dir }}/.pyenv/bin:$PATH"
-          eval "$(pyenv init -)"
-          eval "$(pyenv virtualenv-init -)"
+        - name: download pyenv installer
+          get_url:
+            url: https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
+            dest: "{{ python3_tmpdir }}"
+
+        - name: run pyenv installer
+          command: "bash pyenv-installer"
+          args:
+            chdir: "{{ python3_tmpdir }}"
       
-    - name: update pyenv
-      command: pyenv update
-      environment:
-        PATH: "{{ ansible_env.PATH }}:{{ ansible_user_dir }}/.pyenv/bin"
+        - name: update login file
+          blockinfile:
+            path: "{{ python3_shellrc }}"
+            create: true
+            block: |
+              export PATH="{{ ansible_user_dir }}/.pyenv/bin:$PATH"
+              eval "$(pyenv init -)"
+              eval "$(pyenv virtualenv-init -)"
 
+        - name: update pyenv
+          command: pyenv update
+    
+    - name: install Python
+      block:
+      
+        - name: install Python
+          command: "pyenv install {{ python3_pyenv }}"
 
-- meta: end_play
-
-# FIXME: Broken for CentOS and Ubuntu; need additional libraries
-- name: install Python
-  command: "pyenv install {{ python3_pyenv }}"
+        - name: pyenv rehash
+          command: "pyenv rehash"
+      
+        - name: define python3 command
+          set_fact:  # can't rely on changes to $PATH yet
+            python3_command: "{{ ansible_user_dir }}/.pyenv/shims/{{ python3_command }}"    
+      
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_user_dir }}/.pyenv/bin"

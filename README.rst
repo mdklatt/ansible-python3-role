@@ -1,32 +1,45 @@
-..  README for the python3 role.
-
-=======
+#######
 python3
-=======
-..  _Ansible: http://docs.ansible.com/ansible
+#######
+.. |travis.png| image:: https://travis-ci.org/mdklatt/ansible-python3-role.png?branch=master
+   :alt: Travis CI build status
+   :target: `travis`_
+.. _travis: https://travis-ci.org/mdklatt/ansible-python3-role
+.. _Ansible role: http://docs.ansible.com/ansible/playbooks_roles.html#roles
+.. _Ansible Galaxy: https://galaxy.ansible.com/mdklatt/python3
+
+.. _Ansible: http://docs.ansible.com/ansible
+.. _pyenv: https://github.com/pyenv/pyenv
 
 
-This `Ansible`_ role will ....
+This `Ansible`_ role will install Python 3, making sure that ``pip`` is
+installed. The new version of Python is installed independently of the existing
+system Python installation.
+
+After installation, the recommended way to invoke pip is as a module. This
+ensures that the expected version is used.
+
+.. code-block:: console
+
+    $ python3.6 -m pip install <package>
 
 
-Requirements
-============
-
-Any pre-requisites that may not be covered by Ansible itself or the role should 
-be mentioned here. For instance, if the role uses the EC2 module, it may be a 
-good idea to mention in this section that the boto package is required.
+By default, Python is installed from packages. If the ``python3_pyenv`` 
+variable is set, `pyenv`_ will be installed and then used to install the 
+requested Python version, from source if necessary. The role will *not* 
+activate the new Python; see the `pyenv`_ documentation for ways to do this.
 
 
+==============
 Role Variables
 ==============
 
-A description of the settable variables for this role should go here, including 
-any variables that are in defaults/main.yml, vars/main.yml, and any variables 
-that can/should be set via parameters to the role. Any variables that are read 
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) 
-should be mentioned here as well.
+- ``python3_command``: Python command name
+- ``python3_local``: local binary directory; system-dependent
+- ``python3_pyenv``: Python version to install using `pyenv`_
 
 
+================
 Example Playbook
 ================
 
@@ -36,3 +49,4 @@ Example Playbook
       
       roles:
         - name: python3
+          python3_pyenv: "3.6.2"

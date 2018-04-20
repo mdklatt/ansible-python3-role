@@ -20,6 +20,8 @@
 - name: upgrade pip
   become: true
   command: "{{ python3_command }} -m pip install --upgrade pip"
+  environment:
+    PYENV_VERSION: "{{ python3_pyenv }}"
   
 - name: add local Python path to login file
   become: true
