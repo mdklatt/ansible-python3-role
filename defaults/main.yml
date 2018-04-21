@@ -2,6 +2,6 @@
 ##
 python3_tmpdir: "{{ tmpdir_path }}/python3" 
 python3_command: python3.6
-python3_shellrc: "{{ ansible_user_dir}}/.bash_profile"
+python3_bashrc: "{{ ansible_user_dir}}/.bash_profile"
 python3_local: "{{ ansible_user_dir}}/.local/bin"
 python3_pyenv: null

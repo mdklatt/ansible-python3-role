@@ -18,7 +18,7 @@
       
         - name: update login file
           blockinfile:
-            path: "{{ python3_shellrc }}"
+            path: "{{ python3_bashrc }}"
             create: true
             block: |
               export PATH="{{ ansible_user_dir }}/.pyenv/bin:$PATH"

@@ -6,7 +6,7 @@ dependencies:
 galaxy_info:
   author: Michael Klatt
   description:
-  version: 0.1.0.dev3
+  version: 0.1.0.dev4
   license: MIT
   min_ansible_version: 2.4
 
@@ -18,7 +18,7 @@ galaxy_info:
         - 7
     - name: Ubuntu
       versions:
-        # TODO: trusty  # 14.04
+        - trusty  # 14.04
 
   galaxy_tags:
     - python

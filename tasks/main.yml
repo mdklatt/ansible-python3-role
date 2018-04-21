@@ -27,5 +27,6 @@
   become: true
   lineinfile:
     line: "export PATH={{ python3_local }}:$PATH"
-    dest: "{{ python3_shellrc }}"
+    path: "{{ python3_bashrc }}"
+    create: true
     state: present

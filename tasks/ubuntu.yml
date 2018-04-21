@@ -28,7 +28,7 @@
       become: true
       command: "{{ python3_command }} get-pip.py"
       args:
-        chdir: "{{ python3_tmpdir }}/"
+        chdir: "{{ python3_tmpdir }}"
  
   when: python3_pyenv == None
 
@@ -36,10 +36,6 @@
 - name: requirements for pyenv install
   block:
 
-    - name: set system facts
-      set_fact:
-        python3_profile: ~/.profile
-      
     - name: install system packages
       become: true
       apt:
@@ -47,5 +43,10 @@
         state: present
       with_items:
         - git
+        - libreadline-dev 
+        - zlib1g-dev 
+        - libssl-dev 
+        - libbz2-dev 
+        - libsqlite3-dev
 
   when: python3_pyenv != None
