@@ -1,12 +1,13 @@
 ## Metadata for the python3 role.
 ##
 dependencies:
-  - mdklatt.tmpdir
-
+  - name: mdklatt.tmpdir
+    version: v0.2.1
+    
 galaxy_info:
   author: Michael Klatt
   description: Install Python 3 and essential packages.
-  version: 0.1.1
+  version: 0.1.2dev0
   license: MIT
   min_ansible_version: 2.4
 
