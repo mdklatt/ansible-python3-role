@@ -37,7 +37,7 @@ def package(tmpdir):
     project_root = dirname(dirname(abspath(__file__)))
     package_path = join(tmpdir.strpath, "{:s}.tar.gz".format(_ROLE))
     with TarFile.open(package_path, "w:gz") as package:
-        for name in "defaults", "handlers", "meta", "tasks", "tests", "vars":
+        for name in "defaults", "meta", "tasks", "tests":
             package.add(join(project_root, name), arcname=join(_ROLE, name))
     return package_path
 
