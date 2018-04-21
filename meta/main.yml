@@ -6,7 +6,7 @@ dependencies:
 galaxy_info:
   author: Michael Klatt
   description:
-  version: 0.1.0.dev5
+  version: 0.1.0
   license: MIT
   min_ansible_version: 2.4
 
