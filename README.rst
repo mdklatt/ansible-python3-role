@@ -55,4 +55,4 @@ Example Playbook
       
       roles:
         - name: python3
-          python3_pyenv: "3.6.2"
+          python3_pyenv: "3.6.4"

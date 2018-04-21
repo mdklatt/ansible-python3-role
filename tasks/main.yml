@@ -1,10 +1,5 @@
 ## Tasks for the python3 role.
 ##
-
-# - fail:  # TODO
-#     msg: pyenv installation not supported yet
-#   when: python3_pyenv != None
-
 - name: create download directory
   file:
     path: "{{ python3_tmpdir }}"
@@ -17,12 +12,15 @@
   include_tasks: pyenv.yml
   when: python3_pyenv != None
 
-- name: upgrade pip
+- name: install/upgrade utilities
   become: true
-  command: "{{ python3_command }} -m pip install --upgrade pip"
+  command: "{{ python3_command }} -m pip install --upgrade {{ item }}"
+  with_items:
+    - pip
+    - virtualenv
   environment:
     PYENV_VERSION: "{{ python3_pyenv }}"
-  
+      
 - name: add local Python path to login file
   become: true
   lineinfile:

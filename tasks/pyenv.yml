@@ -31,6 +31,7 @@
     - name: install Python
       block:
       
+        # FIXME: Fails if version is already installed.
         - name: install Python
           command: "pyenv install {{ python3_pyenv }}"
 
