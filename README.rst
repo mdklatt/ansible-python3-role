@@ -1,18 +1,18 @@
 #######
 python3
 #######
-.. |travis.png| image:: https://travis-ci.org/mdklatt/ansible-python3-role.png?branch=master
+
+.. |travis.png| image:: https://travis-ci.org/mdklatt/ansible-python3-role.png?..     
    :alt: Travis CI build status
    :target: `travis`_
 .. _travis: https://travis-ci.org/mdklatt/ansible-python3-role
 .. _Ansible role: http://docs.ansible.com/ansible/playbooks_roles.html#roles
 .. _Ansible Galaxy: https://galaxy.ansible.com/mdklatt/python3
-
-.. _Ansible: http://docs.ansible.com/ansible
 .. _pyenv: https://github.com/pyenv/pyenv
 
+|travis.png|
 
-This `Ansible`_ role will install Python 3, making sure that ``pip`` is
+This `Ansible role`_ will install Python 3, making sure that ``pip`` is
 installed. The new version of Python is installed independently of the existing
 system Python installation.
 
@@ -31,6 +31,8 @@ activate the new Python; see the `pyenv`_ documentation for ways to do this.
 
 The role currently assumes that the user's login shell is ``bash`` and modifies
 startup files accordingly. 
+
+This role is also available on `Ansible Galaxy`_.
 
 
 ==============
