@@ -18,6 +18,7 @@
         state: present
       with_items:
         - python3.6
+        - python3.6-dev
 
     - name: download pip installer
       get_url:

@@ -7,7 +7,7 @@
 
 # Ignore virtualenv environments.
 
-venv*/
+.venv*/
 
 
 # Ignore pyenv files.

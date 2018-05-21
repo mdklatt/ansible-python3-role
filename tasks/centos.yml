@@ -19,6 +19,7 @@
         state: present
       with_items:
         - python36u
+        - python36u-devel
         - python36u-pip
     
     - name: install pip
