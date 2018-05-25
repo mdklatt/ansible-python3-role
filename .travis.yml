@@ -1,6 +1,6 @@
-## Travis CI configuration for the python Ansible role.
+## Travis CI configuration for the python3 Ansible role.
 ##
-##  <https://travis-ci.org/mdklatt/ansible-python-role>
+##  <https://travis-ci.org/mdklatt/ansible-python3-role>
 ##
 language: python
 
@@ -22,6 +22,5 @@ script:
   - ansible --version
   - pytest --verbose tests/test_role.py
 
-# TODO
-#notifications:
-#  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
