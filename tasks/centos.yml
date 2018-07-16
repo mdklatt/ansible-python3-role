@@ -3,14 +3,12 @@
 - name: requirements for Python install
   block:
 
-    - name: install addtional repos
+    - name: install IUS repo
       become: true
       yum:
-        name: "{{ item }}"
+        name: "https://centos{{ ansible_distribution_major_version }}.iuscommunity.org/ius-release.rpm"
         state: present
         update_cache: true
-      with_items:
-        - https://centos7.iuscommunity.org/ius-release.rpm
 
     - name: install system packages
       become: true
