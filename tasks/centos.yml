@@ -24,11 +24,15 @@
       become: true
       command: "{{ python3_command }} -m ensurepip"
 
-    - name: add soft link to python3
+    - name: find installed executable
+      shell: "which {{ python3_command }}"
+      register: python3_which
+
+    - name: link executable to generic name
       become: true
       file:
-        src: /usr/bin/python3.6
-        dest: /usr/bin/python3
+        src: "{{ python3_which.stdout }}"
+        dest: "{{ python3_which.stdout|dirname }}/python3"
         state: link
 
   when: python3_pyenv == None
