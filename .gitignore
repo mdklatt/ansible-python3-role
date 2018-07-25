@@ -26,7 +26,7 @@
 .project/
 .pydevproject/
 nbproject/
-
+*.code-workspace
 
 # Ignore OS metadata files.
 
