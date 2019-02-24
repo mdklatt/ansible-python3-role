@@ -7,7 +7,7 @@ dependencies:
 galaxy_info:
   author: Michael Klatt
   description: Install Python 3 and essential utilities.
-  version: "0.1.5dev0"
+  version: "0.1.5dev1"
   license: MIT
   min_ansible_version: "2.4"
 

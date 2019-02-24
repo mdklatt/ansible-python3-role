@@ -12,8 +12,9 @@
         - name: run pyenv installer
           command: "bash pyenv-installer"
           args:
-            chdir: "{{ python3_tmpdir }}"
-      
+             chdir: "{{ python3_tmpdir }}"
+             creates: "{{ ansible_user_dir }}/.pyenv"
+        
         - name: update login file
           blockinfile:
             path: "{{ python3_bashrc }}"
