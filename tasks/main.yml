@@ -4,7 +4,7 @@
   file:
     path: "{{ python3_tmpdir }}"
     state: directory
-      
+
 - name: OS-specific tasks
   include_tasks: "{{ ansible_distribution|lower }}.yml"
 
@@ -12,7 +12,7 @@
   include_tasks: pyenv.yml
   when: python3_pyenv != None
 
-- name: install/upgrade utilities
+- name: install/upgrade utilities  # noqa 301
   become: true
   command: "{{ python3_command }} -m pip install --upgrade {{ item }}"
   with_items:
@@ -21,7 +21,7 @@
     - virtualenv
   environment:
     PYENV_VERSION: "{{ python3_pyenv }}"
-      
+
 - name: add local Python path to login file
   become: true
   lineinfile:

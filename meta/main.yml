@@ -3,11 +3,11 @@
 dependencies:
   - name: mdklatt.tmpdir
     version: v0.2.1
-    
+
 galaxy_info:
   author: Michael Klatt
   description: Install Python 3 and essential utilities.
-  version: "0.2.0.dev0"
+  version: "0.2.0.dev1"
   license: MIT
   min_ansible_version: "2.7"
 
@@ -16,7 +16,7 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-         - 7
+        - 7
     - name: Ubuntu
       versions:
         - trusty  # 14.04

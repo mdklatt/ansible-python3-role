@@ -24,8 +24,10 @@
       become: true
       command: "{{ python3_command }} -m ensurepip"
 
+    # Have to use `shell` here because `type` is a builtin.
+    # TODO: Surely there's a module for this?
     - name: find installed executable
-      shell: "type -p {{ python3_command }}"  # sh builtin to mimic `which`
+      shell: "type -p {{ python3_command }}"  # noqa 305
       register: python3_which
 
     - name: link executable to generic name
@@ -49,12 +51,12 @@
       with_items:
         - git
         - zlib-devel
-        - openssl-devel 
+        - openssl-devel
         - openssl-static
         - sqlite-devel
-        - bzip2-devel 
+        - bzip2-devel
         - bzip2-libs
-        - readline-devel 
+        - readline-devel
         - readline-static
-                
+
   when: python3_pyenv != None

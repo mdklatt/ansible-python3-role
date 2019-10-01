@@ -11,7 +11,8 @@ import pytest
 # Each `host` is a Testinfra Host instance. The inventory is created by the
 # Molecule framework, so this test suite must be run via *e.g.* `molecule test`
 # and not `pytest`.
-testinfra_hosts = AnsibleRunner(environ["MOLECULE_INVENTORY_FILE"]).get_hosts("all")
+runner = AnsibleRunner(environ["MOLECULE_INVENTORY_FILE"])
+testinfra_hosts = runner.get_hosts("all")
 
 
 @pytest.mark.parametrize("cmd", ("python3", "pip3", "virtualenv"))
