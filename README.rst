@@ -57,3 +57,16 @@ Example Playbook
       roles:
         - name: python3
           python3_pyenv: "3.6.4"
+
+
+=================
+Molecule Workflow
+=================
+
+.. _Molecule: https://molecule.readthedocs.io/en/stable/getting-started.html#run-a-full-test-sequence
+
+Use the `Molecule`_ framework for cross-platform testing:
+
+.. code-block:: console
+
+    $ python -m molecule test [--destroy=never]

@@ -25,7 +25,7 @@
       command: "{{ python3_command }} -m ensurepip"
 
     - name: find installed executable
-      shell: "which {{ python3_command }}"
+      shell: "type -p {{ python3_command }}"  # sh builtin to mimic `which`
       register: python3_which
 
     - name: link executable to generic name
