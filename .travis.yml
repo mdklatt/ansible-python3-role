@@ -12,15 +12,17 @@ branches:
     - master
     - dev
 
-sudo: false  # use container infrastructure
+services:
+  - docker
 
 install:
-  - python -m pip install ansible
-  - python -m pip install -r tests/requirements.txt
+  - python -m pip install ansible molecule docker
 
 script:
   - ansible --version
-  - pytest --verbose tests/test_role.py
+  - molecule --version
+  - molecule test
 
 notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  webhooks:
+    - https://galaxy.ansible.com/api/v1/notifications/
