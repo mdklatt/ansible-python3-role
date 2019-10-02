@@ -16,7 +16,7 @@ services:
   - docker
 
 install:
-  - python -m pip install ansible molecule docker
+  - python -m pip install -r molecule/requirements.txt
 
 script:
   - ansible --version
