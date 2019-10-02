@@ -2,12 +2,19 @@
 ##
 - name: pyenv installation of Python
   block:
+    - name: create download directory
+      file:
+        path: "{{ python3_tmpdir }}"
+        state: directory
+      changed_when: false  # directory will be removed when the play ends
+
     - name: install pyenv
       block:
         - name: download pyenv installer
           get_url:
             url: https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
             dest: "{{ python3_tmpdir }}"
+          changed_when:  # file will be removed when the play ends
 
         - name: run pyenv installer
           command: "bash pyenv-installer"

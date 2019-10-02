@@ -12,9 +12,9 @@ python3
 
 |travis.png|
 
-This `Ansible role`_ will install Python 3 and the ``pip`` and ``virtualenv``
-utilities. The new version of Python is installed independently of the existing
-system Python installation.
+This `Ansible role`_ will install a Python 3.6+, ``pip``, and``virtualenv``.
+The new Python is installed independently of the existing system Python
+installation.
 
 Although the ``pip`` and ``virtualenv`` command-line tools will be installed,
 the recommended way to invoke them is as modules to ensure that the expected

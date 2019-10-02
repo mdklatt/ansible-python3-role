@@ -1,6 +1,6 @@
 ## Tasks unique to Ubuntu.
 ##
-- name: requirements for Python install
+- name: requirements for package install
   block:
 
     - name: install repositories
@@ -11,25 +11,18 @@
       with_items:
         - ppa:deadsnakes/ppa
 
-    - name: install system packages
+    - name: install Python system packages
       become: true
       apt:
-        name: "{{ item }}"
+        name:
+          - python3.6
+          - python3.6-dev
+          - python3.6-venv  # installs ensurepip module but not pip itself
         state: present
-      with_items:
-        - python3.6
-        - python3.6-dev
-
-    - name: download pip installer
-      get_url:
-        url: https://bootstrap.pypa.io/get-pip.py
-        dest: "{{ python3_tmpdir }}/"
 
     - name: install pip
       become: true
-      command: "{{ python3_command }} get-pip.py"
-      args:
-        chdir: "{{ python3_tmpdir }}"
+      command: "{{ python3_command }} -m ensurepip"
 
   when: python3_pyenv == None
 
@@ -37,17 +30,19 @@
 - name: requirements for pyenv install
   block:
 
-    - name: install system packages
+    - name: install system packages required for pyenv
       become: true
       apt:
-        name: "{{ item }}"
+        name:
+          - curl
+          - gcc
+          - git
+          - libbz2-dev
+          - libreadline-dev
+          - libssl-dev
+          - libsqlite3-dev
+          - make
+          - zlib1g-dev
         state: present
-      with_items:
-        - git
-        - libreadline-dev
-        - zlib1g-dev
-        - libssl-dev
-        - libbz2-dev
-        - libsqlite3-dev
 
   when: python3_pyenv != None

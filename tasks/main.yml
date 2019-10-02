@@ -1,9 +1,7 @@
 ## Tasks for the python3 role.
 ##
-- name: create download directory
-  file:
-    path: "{{ python3_tmpdir }}"
-    state: directory
+- debug:
+    var: python3_pyenv
 
 - name: OS-specific tasks
   include_tasks: "{{ ansible_distribution|lower }}.yml"

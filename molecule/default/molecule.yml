@@ -2,7 +2,7 @@
 dependency:
   name: galaxy
   options:
-    role-file: "molecule/default/requirements.yml"
+    role-file: "molecule/requirements.yml"
 driver:
   name: docker
 lint:
@@ -23,7 +23,8 @@ verifier:
   lint:
     name: flake8
 scenario:
-  test_sequence:  # overriding default sequence
+  test_sequence:
+    # Override default sequence to disable idempotence command.
     - dependency
     - lint
     - cleanup
@@ -32,7 +33,7 @@ scenario:
     - create
     - prepare
     - converge
-    #- idempotence  FIXME
+    # - idempotence  # TODO
     - side_effect
     - verify
     - cleanup

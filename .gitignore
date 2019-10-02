@@ -3,6 +3,12 @@
 .venv*/
 
 
+# Ignore Python build artifacts.
+
+*.pyc
+*.pyo
+
+
 # Ignore pyenv files.
 
 .python-version

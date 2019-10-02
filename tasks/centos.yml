@@ -1,6 +1,6 @@
 ## CentOS tasks.
 ##
-- name: requirements for Python install
+- name: requirements for package install
   block:
 
     - name: install IUS repo
@@ -10,25 +10,21 @@
         state: present
         update_cache: true
 
-    - name: install system packages
+    - name: install Python system packages
       become: true
       yum:
-        name: "{{ item }}"
+        name:
+          - python36u
+          - python36u-devel
+          - python36u-pip
         state: present
-      with_items:
-        - python36u
-        - python36u-devel
-        - python36u-pip
-
-    - name: install pip
-      become: true
-      command: "{{ python3_command }} -m ensurepip"
 
     # Have to use `shell` here because `type` is a builtin.
     # TODO: Surely there's a module for this?
     - name: find installed executable
       shell: "type -p {{ python3_command }}"  # noqa 305
       register: python3_which
+      changed_when: false
 
     - name: link executable to generic name
       become: true
@@ -43,20 +39,21 @@
 - name: requirements for pyenv install
   block:
 
-    - name: install system packages for pyenv
+    - name: install system packages required for pyenv
       become: true
       yum:
-        name: "{{ item }}"
+        name:
+          - bzip2-devel
+          - bzip2-libs
+          - gcc
+          - git
+          - make
+          - openssl-devel
+          - openssl-static
+          - readline-devel
+          - readline-static
+          - sqlite-devel
+          - zlib-devel
         state: present
-      with_items:
-        - git
-        - zlib-devel
-        - openssl-devel
-        - openssl-static
-        - sqlite-devel
-        - bzip2-devel
-        - bzip2-libs
-        - readline-devel
-        - readline-static
 
   when: python3_pyenv != None

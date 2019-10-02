@@ -2,4 +2,5 @@
 - name: Converge
   hosts: all
   roles:
+    # TODO: Test pyenv install in addition to package install; new scenario?
     - name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
