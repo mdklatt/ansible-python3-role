@@ -12,8 +12,8 @@ python3
 
 |travis.png|
 
-This `Ansible role`_ will install a Python 3.6+, ``pip``, and``virtualenv``.
-The new Python is installed independently of the existing system Python
+This `Ansible role`_ will install Python 3, ``pip``, and``virtualenv``. The
+new Python is installed independently of the existing system Python
 installation.
 
 Although the ``pip`` and ``virtualenv`` command-line tools will be installed,
@@ -25,13 +25,15 @@ version is used:
     $ python3.6 -m pip install <package>
     $ python3.6 -m venv <dir>
 
-By default, Python is installed from packages. If the ``python3_pyenv`` 
-variable is set, `pyenv`_ will be installed and then used to install the 
-requested Python version, from source if necessary. The role will *not* 
-activate the new Python; see the `pyenv`_ documentation for ways to do this.
-
 The role currently assumes that the user's login shell is ``bash`` and modifies
-startup files accordingly. 
+startup files accordingly.
+
+By default, Python is installed from packages. If the ``python3_pyenv``
+variable is set, `pyenv`_ will be installed and then used to install the
+requested Python version, from source if necessary. A `pyenv`_ install is only
+visible for the current Ansible user (the login user by default). The role will
+*not* activate the new Python; see the `pyenv`_ documentation for ways to do
+this.
 
 This role is also available on `Ansible Galaxy`_.
 
