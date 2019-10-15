@@ -6,7 +6,7 @@
       file:
         path: "{{ python3_tmpdir }}"
         state: directory
-      changed_when: false  # directory will be removed when the play ends
+      changed_when: false  # tmpdir role removes directory automatically
 
     - name: install pyenv
       block:
@@ -14,7 +14,7 @@
           get_url:
             url: https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
             dest: "{{ python3_tmpdir }}"
-          changed_when:  # file will be removed when the play ends
+          changed_when: false  # temporary directory is removed when play ends
 
         - name: run pyenv installer
           command: "bash pyenv-installer"

@@ -21,7 +21,7 @@ install:
 script:
   - ansible --version
   - molecule --version
-  - molecule test
+  - molecule test --all
 
 notifications:
   webhooks:

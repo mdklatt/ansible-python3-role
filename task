@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+## Bootstrap the local dev environment.
+##
+## @param 1: python command (optional; defaults to `python`)
+dev() {
+    if [[ -z $1 ]]
+    then
+        local python="python"
+    else
+        local python=$1
+    fi
+    # TODO: Verify that Python version is at least 3.6
+    if [[ molecule/requirements.txt -nt .venv ]]
+    then
+        # Create/update virtual environment with new requirements.
+        "${python}" -m venv .venv
+        .venv/bin/python -m pip install -U pip -r molecule/requirements.txt
+        touch .venv
+    fi
+}
+
+## Run a Molecule test scenario.
+##
+## @param 1: scenario to test (optional; defaults to all)
+test () {
+    if [[ ! -d .venv ]]
+    then
+        echo "No virtual environment; run 'dev' task"
+        exit 1
+    fi
+    if [[ -z $1 ]]
+    then
+        local scenario="--all"
+    else
+        local scenario="--scenario-name=${1}"
+    fi
+    source .venv/bin/activate
+    python -m molecule test "${scenario}"
+}
+
+
+# Execute the specified function. All command line arguments after the function
+# name are passed to the function.
+
+set -e  # fail immediately on error
+task=$1
+shift 1
+$task "$@"
+echo "Task '${task}' succeeded"
+exit 0

@@ -24,6 +24,9 @@ verifier:
     name: flake8
 scenario:
   test_sequence:
+    # Override default sequence to disable idempotence checks. This role is not
+    # idempotent because of its dependency on the tmpdir role, which itself is
+    # not idempotent.
     - dependency
     - lint
     - cleanup
@@ -32,8 +35,8 @@ scenario:
     - create
     - prepare
     - converge
-    # - idempotence  # TODO
+    # - idempotence
     - side_effect
-    # - verify  # FIXME
+    - verify
     - cleanup
     - destroy
