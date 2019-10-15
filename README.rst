@@ -39,6 +39,9 @@ This role is also available on `Ansible Galaxy`_.
 
 
 ==============
+Using the Role
+==============
+
 Role Variables
 ==============
 
@@ -48,7 +51,6 @@ Role Variables
 - ``python3_pyenv``: Python version to install using `pyenv`_
 
 
-================
 Example Playbook
 ================
 
@@ -61,14 +63,12 @@ Example Playbook
           python3_pyenv: "3.6.4"
 
 
-=================
-Molecule Workflow
-=================
-
+===========
+Development
+===========
 .. _Molecule: https://molecule.readthedocs.io/en/stable/getting-started.html#run-a-full-test-sequence
 
-Use the `Molecule`_ framework for cross-platform testing:
+Use the ``task`` script to run development tasks:
 
-.. code-block:: console
-
-    $ python -m molecule test [--destroy=never]
+- ``dev``: Create the local development environment
+- ``test``: Run the `Molecule`_ test suite
