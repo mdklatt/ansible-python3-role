@@ -2,21 +2,13 @@
 ##
 - name: requirements for package install
   block:
-
-    - name: install IUS repo
-      become: true
-      yum:
-        name: "https://centos{{ ansible_distribution_major_version }}.iuscommunity.org/ius-release.rpm"
-        state: present
-        update_cache: true
-
     - name: install Python system packages
       become: true
       yum:
         name:
-          - python36u
-          - python36u-devel
-          - python36u-pip
+          - python3
+          - python3-devel
+          - python3-pip
         state: present
 
     # Have to use `shell` here because `type` is a builtin.
