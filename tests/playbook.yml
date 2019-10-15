@@ -1,6 +1,0 @@
-## Test playbook for the python3 role.
-##
-- hosts: localhost
-
-  roles:
-    - role: python3

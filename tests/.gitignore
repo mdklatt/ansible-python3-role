@@ -1,3 +1,0 @@
-# Ignore pytest cache files.
-
-.pytest_cache/
