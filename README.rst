@@ -12,9 +12,7 @@ python3
 
 |travis.png|
 
-This `Ansible role`_ will install Python 3, ``pip``, and``virtualenv``. The
-new Python is installed independently of the existing system Python
-installation.
+This `Ansible role`_ will install Python 3, ``pip``, and ``virtualenv``. 
 
 Although the ``pip`` and ``virtualenv`` command-line tools will be installed,
 the recommended way to invoke them is as modules to ensure that the expected
@@ -22,8 +20,8 @@ version is used:
 
 .. code-block:: console
 
-    $ python3.6 -m pip install <package>
-    $ python3.6 -m venv <dir>
+    $ python3 -m pip install <package>
+    $ python3 -m venv <dir>
 
 The role currently assumes that the user's login shell is ``bash`` and modifies
 startup files accordingly.
