@@ -3,7 +3,7 @@
 galaxy_info:
   author: Michael Klatt
   description: Install Python 3 and essential utilities.
-  version: "0.2.1"
+  version: "0.3.0.dev0"
   license: MIT
   min_ansible_version: "2.6"
   platforms:
@@ -16,6 +16,7 @@ galaxy_info:
       versions:
         - trusty  # 14.04
         - xenial  # 16.04
+        - bionic  # 18.04
   galaxy_tags:
     - python
     - python3

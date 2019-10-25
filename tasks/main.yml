@@ -7,16 +7,6 @@
   include_tasks: pyenv.yml
   when: python3_pyenv != None
 
-- name: install/upgrade utilities  # noqa 301
-  become: true
-  command: "{{ python3_command }} -m pip install --upgrade {{ item }}"
-  with_items:
-    - pip
-    - pipenv
-    - virtualenv
-  environment:
-    PYENV_VERSION: "{{ python3_pyenv }}"
-
 - name: add local Python path to login file
   become: true
   lineinfile:

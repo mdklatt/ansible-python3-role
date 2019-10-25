@@ -2,7 +2,7 @@
 ##
 - name: requirements for package install
   block:
-    - name: install Python system packages
+    - name: install system packages
       become: true
       yum:
         name:
@@ -10,6 +10,18 @@
           - python3-devel
           - python3-pip
         state: present
+
+    - name: install Python packages
+      become: true
+      pip:
+        name:
+          - virtualenv
+        state: present
+        executable: pip3
+
+    - name: set system facts
+      set_fact:
+        python3_command: python3.6
 
     # Have to use `shell` here because `type` is a builtin.
     # TODO: Surely there's a module for this?
