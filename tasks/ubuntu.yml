@@ -1,46 +1,6 @@
 ## Tasks unique to Ubuntu.
 ##
-- name: requirements for package install
-  block:
-
-    - name: install repositories
-      become: true
-      apt_repository:
-        repo: "{{ item }}"
-        update_cache: true
-      with_items:
-        - ppa:deadsnakes/ppa
-
-    - name: install Python system packages
-      become: true
-      apt:
-        name:
-          - python3.6
-          - python3.6-dev
-          - python3.6-venv  # installs ensurepip module but not pip itself
-        state: present
-
-    - name: set system facts
-      set_fact:
-        python3_command: python3.6
-
-    - name: install pip
-      become: true
-      command: "{{ python3_command }} -m ensurepip"
-
-    - name: install Python packages
-      become: true
-      pip:
-        name:
-          - virtualenv
-        state: present
-        executable: pip3
-      when: python3_pyenv == None
-
-  when: python3_pyenv == None and ansible_distribution_major_version == "14"
-
-
-- name: install Python utilities
+- name: install Python utility packages
   become: true
   apt:
     name:
@@ -48,7 +8,7 @@
       - python3-virtualenv
       - python3-dev
       - virtualenv
-  when: python3_pyenv == None and ansible_distribution_major_version != "14"
+  when: python3_pyenv == None
 
 
 - name: requirements for pyenv install
