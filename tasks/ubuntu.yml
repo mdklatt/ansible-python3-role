@@ -1,7 +1,5 @@
-## Tasks unique to Ubuntu.
-##
-- name: install Python utility packages
-  become: true
+---
+- name: Install requirements for package install
   apt:
     name:
       - python3-pip
@@ -9,22 +7,21 @@
       - python3-dev
       - virtualenv
   when: python3_pyenv == None
-
-
-- name: requirements for pyenv install
-  block:
-    - name: install system packages required for pyenv
-      apt:
-        name:
-          - curl
-          - gcc
-          - git
-          - libbz2-dev
-          - libreadline-dev
-          - libssl-dev
-          - libsqlite3-dev
-          - make
-          - zlib1g-dev
-        state: present
   become: true
+
+
+- name: Install system packages required for pyenv
+  apt:
+    name:
+      - curl
+      - gcc
+      - git
+      - libbz2-dev
+      - libreadline-dev
+      - libssl-dev
+      - libsqlite3-dev
+      - make
+      - zlib1g-dev
+    state: present
   when: python3_pyenv != None
+  become: true

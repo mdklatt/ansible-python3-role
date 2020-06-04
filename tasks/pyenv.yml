@@ -1,28 +1,27 @@
-## Install Python using pyenv.
-##
-- name: pyenv installation of Python
+---
+- name: Install Python using pyenv
   block:
-    - name: create download directory
+    - name: Create download directory
       file:
         path: "{{ python3_tmpdir }}"
         state: directory
       changed_when: false  # tmpdir role removes directory automatically
 
-    - name: install pyenv
+    - name: Install pyenv
       block:
-        - name: download pyenv installer
+        - name: Download pyenv installer
           get_url:
             url: https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
             dest: "{{ python3_tmpdir }}"
           changed_when: false  # temporary directory is removed when play ends
 
-        - name: run pyenv installer
+        - name: Run pyenv installer
           command: "bash pyenv-installer"
           args:
             chdir: "{{ python3_tmpdir }}"
             creates: "{{ ansible_user_dir }}/.pyenv"
 
-        - name: update login file
+        - name: Update login file
           blockinfile:
             path: "{{ python3_bashrc }}"
             create: true
@@ -31,20 +30,20 @@
               eval "$(pyenv init -)"
               eval "$(pyenv virtualenv-init -)"
 
-        - name: update pyenv
+        - name: Update pyenv
           command: pyenv update
 
-    - name: install Python
+    - name: Install Python
       block:
-        - name: install Python
+        - name: Install Python
           command: "pyenv install {{ python3_pyenv }}"
           args:
             creates: "{{ ansible_user_dir }}/.pyenv/versions/{{ python3_pyenv }}"
 
-        - name: pyenv rehash
+        - name: Execute pyenv rehash
           command: "pyenv rehash"
 
-        - name: define python3 command
+        - name: Define python3 command
           set_fact:  # can't rely on changes to $PATH yet
             python3_command: "{{ ansible_user_dir }}/.pyenv/shims/{{ python3_command }}"
 

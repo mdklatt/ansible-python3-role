@@ -1,4 +1,4 @@
-ansible==2.6.18
-docker>=4.0
-molecule>=2.22
+ansible==2.8.12
+docker==4.2
+molecule==2.22
 pygments>=2.4  # for PyCharm reStructuredText plugin

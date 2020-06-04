@@ -1,16 +1,15 @@
-## Tasks for the python3 role.
-##
+---
 - name: OS-specific tasks
   include_tasks: "{{ ansible_distribution|lower }}.yml"
 
-- name: pyenv tasks
+- name: Install via pyenv
   include_tasks: pyenv.yml
   when: python3_pyenv != None
 
-- name: add local Python path to login file
-  become: true
+- name: Add local Python path to login file
   lineinfile:
     line: "export PATH={{ python3_local }}:$PATH"
     path: "{{ python3_bashrc }}"
     create: true
     state: present
+  become: true

@@ -1,17 +1,17 @@
-## CentOS tasks.
-##
-- name: requirements for package install
+---
+- name: Install requirements for package install
   block:
-    - name: install system packages
+    - name: Install system packages
       become: true
       yum:
         name:
+          - python-setuptools
           - python3
           - python3-devel
           - python3-pip
         state: present
 
-    - name: install Python packages
+    - name: Install Python utilities
       become: true
       pip:
         name:
@@ -19,18 +19,18 @@
         state: present
         executable: pip3
 
-    - name: set system facts
+    - name: Set system facts
       set_fact:
         python3_command: python3.6
 
     # Have to use `shell` here because `type` is a builtin.
     # TODO: Surely there's a module for this?
-    - name: find installed executable
+    - name: Find installed executable
       shell: "type -p {{ python3_command }}"  # noqa 305
       register: python3_which
       changed_when: false
 
-    - name: link executable to generic name
+    - name: Link executable to generic name
       become: true
       file:
         src: "{{ python3_which.stdout }}"
@@ -40,24 +40,20 @@
   when: python3_pyenv == None
 
 
-- name: requirements for pyenv install
-  block:
-
-    - name: install system packages required for pyenv
-      become: true
-      yum:
-        name:
-          - bzip2-devel
-          - bzip2-libs
-          - gcc
-          - git
-          - make
-          - openssl-devel
-          - openssl-static
-          - readline-devel
-          - readline-static
-          - sqlite-devel
-          - zlib-devel
-        state: present
-
+- name: Install requirements for pyenv install
+  yum:
+    name:
+      - bzip2-devel
+      - bzip2-libs
+      - gcc
+      - git
+      - make
+      - openssl-devel
+      - openssl-static
+      - readline-devel
+      - readline-static
+      - sqlite-devel
+      - zlib-devel
+    state: present
   when: python3_pyenv != None
+  become: true

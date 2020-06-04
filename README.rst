@@ -2,14 +2,6 @@
 python3
 #######
 
-.. |travis.png| image:: https://travis-ci.org/mdklatt/ansible-python3-role.png?..     
-   :alt: Travis CI build status
-   :target: `travis`_
-.. _travis: https://travis-ci.org/mdklatt/ansible-python3-role
-.. _Ansible role: http://docs.ansible.com/ansible/playbooks_roles.html#roles
-.. _Ansible Galaxy: https://galaxy.ansible.com/mdklatt/python3
-.. _pyenv: https://github.com/pyenv/pyenv
-
 |travis.png|
 
 This `Ansible role`_ will install Python 3, ``pip``, and ``virtualenv``. 
@@ -64,9 +56,17 @@ Example Playbook
 ===========
 Development
 ===========
-.. _Molecule: https://molecule.readthedocs.io/en/stable/getting-started.html#run-a-full-test-sequence
-
 Use the ``task`` script to run development tasks:
 
 - ``dev``: Create the local development environment
 - ``test``: Run the `Molecule`_ test suite
+
+
+.. |travis.png| image:: https://travis-ci.org/mdklatt/ansible-python3-role.png?..
+   :alt: Travis CI build status
+   :target: `travis`_
+.. _travis: https://travis-ci.org/mdklatt/ansible-python3-role
+.. _Ansible role: http://docs.ansible.com/ansible/playbooks_roles.html#roles
+.. _Ansible Galaxy: https://galaxy.ansible.com/mdklatt/python3
+.. _pyenv: https://github.com/pyenv/pyenv
+.. _Molecule: https://molecule.readthedocs.io/en/stable/getting-started.html#run-a-full-test-sequence
