@@ -3,6 +3,6 @@ docker==4.2
 molecule==3.0.2
 ansible-lint==4.1.0
 flake8==3.7.9
-testinfra==5.2.0
+testinfra==5.2.2
 pytest==5.2.2
 pygments>=2.4  # for PyCharm reStructuredText plugin
