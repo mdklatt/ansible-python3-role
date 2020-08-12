@@ -23,18 +23,18 @@
       set_fact:
         python3_command: python3.6
 
-    # Have to use `shell` here because `type` is a builtin.
-    # TODO: Surely there's a module for this?
     - name: Find installed executable
-      shell: "type -p {{ python3_command }}"  # noqa 305
+      find:
+        paths: /usr/bin
+        patterns: "{{ python3_command }}"
       register: python3_which
       changed_when: false
 
     - name: Link executable to generic name
       become: true
       file:
-        src: "{{ python3_which.stdout }}"
-        dest: "{{ python3_which.stdout|dirname }}/python3"
+        src: "{{ python3_which.files | map(attribute='path') | join(' ') }}"
+        dest: "{{ python3_which.files | map(attribute='path') | join(' ') | dirname }}/python3"
         state: link
 
   when: python3_pyenv == None
