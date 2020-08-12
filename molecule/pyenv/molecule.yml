@@ -5,8 +5,10 @@ dependency:
     role-file: "molecule/requirements.yml"
 driver:
   name: docker
-lint:
-  name: yamllint
+lint: |
+  yamllint .
+  ansible-lint . -v
+  flake8 -v
 platforms:
   - name: EL7
     image: centos:7
@@ -18,12 +20,8 @@ platforms:
     image: ubuntu:20.04
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
 verifier:
   name: testinfra
-  lint:
-    name: flake8
 scenario:
   test_sequence:
     # Override default sequence to disable idempotence checks. This role is not
