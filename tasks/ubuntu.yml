@@ -1,17 +1,19 @@
 ---
 - name: Install requirements for package install
-  apt:
+  become: true
+  when: python3_pyenv == None
+  package:
     name:
       - python3-pip
       - python3-virtualenv
       - python3-dev
       - virtualenv
-  when: python3_pyenv == None
-  become: true
-
+    state: present
 
 - name: Install system packages required for pyenv
-  apt:
+  become: true
+  when: python3_pyenv != None
+  package:
     name:
       - curl
       - gcc
@@ -23,5 +25,3 @@
       - make
       - zlib1g-dev
     state: present
-  when: python3_pyenv != None
-  become: true
