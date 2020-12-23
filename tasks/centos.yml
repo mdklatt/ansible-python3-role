@@ -1,8 +1,9 @@
 - name: Install requirements for package install
+  when: python3_pyenv == None
   block:
     - name: Install system packages
       become: true
-      yum:
+      package:
         name:
           - python-setuptools
           - python3
@@ -21,26 +22,34 @@
     - name: Set system facts
       set_fact:
         python3_command: python3.6
+        python3_path: "/usr/bin/{{ python3_command }}"
 
-    - name: Find installed executable
-      find:
-        paths: /usr/bin
-        patterns: "{{ python3_command }}"
-      register: python3_which
-      changed_when: false
+    - name: Get executable path
+      block:
+        - name: Search for installed executable
+          find:
+            paths: /usr/bin
+            patterns: "{{ python3_command }}"
+          register: python3_find
+          changed_when: false
+
+        - name: Set python3_path
+          set_fact:
+            # The length of python3_find.files will always be 1.
+            python3_path: "{{ python3_find.files | map(attribute='path') | join('') }}"
 
     - name: Link executable to generic name
       become: true
       file:
-        src: "{{ python3_which.files | map(attribute='path') | join(' ') }}"
-        dest: "{{ python3_which.files | map(attribute='path') | join(' ') | dirname }}/python3"
+        src: "{{ python3_path }}"
+        dest: "{{ python3_path | dirname }}/python3"
         state: link
-
-  when: python3_pyenv == None
 
 
 - name: Install requirements for pyenv install
-  yum:
+  become: true
+  when: python3_pyenv != None
+  package:
     name:
       - bzip2-devel
       - bzip2-libs
@@ -54,5 +63,3 @@
       - sqlite-devel
       - zlib-devel
     state: present
-  when: python3_pyenv != None
-  become: true
