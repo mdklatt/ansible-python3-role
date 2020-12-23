@@ -47,10 +47,9 @@ Example Playbook
 .. code-block:: yaml
 
     - hosts: all
-      
       roles:
         - name: python3
-          python3_pyenv: "3.6.4"
+          python3_pyenv: "3.8.5"
 
 
 ===========
@@ -62,7 +61,7 @@ Use the ``task`` script to run development tasks:
 - ``test``: Run the `Molecule`_ test suite
 
 
-.. |travis.png| image:: https://travis-ci.org/mdklatt/ansible-python3-role.png?..
+.. |travis.png| image:: https://travis-ci.org/mdklatt/ansible-python3-role.svg?branch=main
    :alt: Travis CI build status
    :target: `travis`_
 .. _travis: https://travis-ci.org/mdklatt/ansible-python3-role
