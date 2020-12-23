@@ -3,7 +3,7 @@ galaxy_info:
   role_name: python3
   author: Michael Klatt
   description: Install Python 3 and essential utilities.
-  version: "0.4.1.dev2"
+  version: "0.4.1"
   license: MIT
   min_ansible_version: "2.8"
   platforms:
