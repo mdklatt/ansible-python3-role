@@ -1,10 +1,13 @@
 ---
 - name: Install Python using pyenv
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_user_dir }}/.pyenv/bin"
   block:
     - name: Create download directory
       file:
         path: "{{ python3_tmpdir }}"
         state: directory
+        mode: 0600
       changed_when: false  # tmpdir role removes directory automatically
 
     - name: Install pyenv
@@ -29,6 +32,7 @@
               export PATH="{{ ansible_user_dir }}/.pyenv/bin:$PATH"
               eval "$(pyenv init -)"
               eval "$(pyenv virtualenv-init -)"
+            mode: 0644
 
         - name: Update pyenv
           command: pyenv update
@@ -46,6 +50,3 @@
         - name: Define python3 command
           set_fact:  # can't rely on changes to $PATH yet
             python3_command: "{{ ansible_user_dir }}/.pyenv/shims/{{ python3_command }}"
-
-  environment:
-    PATH: "{{ ansible_env.PATH }}:{{ ansible_user_dir }}/.pyenv/bin"

@@ -22,7 +22,7 @@ def pyenv(host):
     """
     # Can't rely on PATH here because Testinfra seems to be using /bin/sh for
     # execution, so .bash_profile is not being sourced correctly.
-    host.run("~/.pyenv/bin/pyenv local 3.6.4")
+    host.run("~/.pyenv/bin/pyenv local 3.8.5")
     return
 
 
@@ -32,5 +32,5 @@ def test_python(host):
 
     """
     python = "~/.pyenv/shims/python"  # path must be explicit
-    assert host.check_output(f"{python:s} --version") == "Python 3.6.4"
+    assert host.check_output(f"{python:s} --version") == "Python 3.8.5"
     return

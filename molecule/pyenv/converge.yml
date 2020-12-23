@@ -3,4 +3,4 @@
   hosts: all
   roles:
     - name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
-      python3_pyenv: "3.6.4"
+      python3_pyenv: "3.8.5"
