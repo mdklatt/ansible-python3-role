@@ -21,6 +21,7 @@ galaxy_info:
     - python
     - python3
     - system
+  github_branch: main
 
 dependencies:
   - name: mdklatt.tmpdir
