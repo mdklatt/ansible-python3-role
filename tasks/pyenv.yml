@@ -7,7 +7,7 @@
       file:
         path: "{{ python3_tmpdir }}"
         state: directory
-        mode: 0600
+        mode: 0700
       changed_when: false  # tmpdir role removes directory automatically
 
     - name: Install pyenv
