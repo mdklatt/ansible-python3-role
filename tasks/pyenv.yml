@@ -34,8 +34,16 @@
               eval "$(pyenv virtualenv-init -)"
             mode: 0644
 
+        - debug:
+            msg: |
+              "`pyenv update` fails on CentOS 7"
+              "<https://github.com/pyenv/pyenv/issues/2056>"
+            verbosity: 0
+          when: ansible_distribution == "CentOS"
+
         - name: Update pyenv
           command: pyenv update
+          when: ansible_distribution != "CentOS"  # FIXME: https://github.com/pyenv/pyenv/issues/2056
 
     - name: Install Python
       block:
