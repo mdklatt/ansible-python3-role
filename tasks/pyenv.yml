@@ -10,7 +10,7 @@
         mode: 0700
       changed_when: false  # tmpdir role removes directory automatically
 
-    - name: Install pyenv
+    - name: Install latest version of pyenv
       block:
         - name: Download pyenv installer
           get_url:
@@ -37,17 +37,6 @@
           loop:
             - "{{ python3_shellrc }}"
             - "~/.profile"  # for non-interactive uses of /bin/sh
-
-        - debug:
-            msg: |
-              "`pyenv update` fails on CentOS 7"
-              "<https://github.com/pyenv/pyenv/issues/2056>"
-            verbosity: 0
-          when: ansible_distribution == "CentOS"
-
-        - name: Update pyenv
-          command: pyenv update
-          when: ansible_distribution != "CentOS"  # FIXME: https://github.com/pyenv/pyenv/issues/2056
 
     - name: Install Python
       block:
