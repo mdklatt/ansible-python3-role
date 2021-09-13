@@ -9,7 +9,7 @@
 - name: Add local Python path to login file
   lineinfile:
     line: "export PATH={{ python3_local }}:$PATH"
-    path: "{{ python3_bashrc }}"
+    path: "{{ python3_shellrc }}"
     create: true
     state: present
     mode: 0644

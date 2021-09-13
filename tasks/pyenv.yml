@@ -26,13 +26,17 @@
 
         - name: Update login file
           blockinfile:
-            path: "{{ python3_bashrc }}"
+            path: "{{ item }}"
             create: true
             block: |
-              export PATH="{{ ansible_user_dir }}/.pyenv/bin:$PATH"
-              eval "$(pyenv init -)"
+              export PYENV_ROOT="$HOME/.pyenv"
+              export PATH="$PYENV_ROOT/bin:$PATH"
+              eval "$(pyenv init --path)"
               eval "$(pyenv virtualenv-init -)"
             mode: 0644
+          loop:
+            - "{{ python3_shellrc }}"
+            - "~/.profile"  # for non-interactive uses of /bin/sh
 
         - debug:
             msg: |

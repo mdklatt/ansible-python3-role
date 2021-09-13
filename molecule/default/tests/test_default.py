@@ -1,4 +1,4 @@
-""" Test suite for the Molecule default scenario.
+""" Test suite for the Molecule 'default' scenario.
 
 """
 from os import environ

@@ -36,7 +36,7 @@ Role Variables
 ==============
 
 - ``python3_command``: Python command name
-- ``python3_bashrc``: login file to modify; defaults to ``bash_profile``
+- ``python3_shellrc``: login file to modify; defaults to ``.bash_profile``
 - ``python3_local``: local binary directory; system-dependent
 - ``python3_pyenv``: Python version to install using `pyenv`_
 
