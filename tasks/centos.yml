@@ -18,6 +18,7 @@
           - virtualenv
         state: present
         executable: pip3
+        extra_args: "{{ python3_pip_extra_args }}"
 
     - name: Set system facts
       set_fact:
