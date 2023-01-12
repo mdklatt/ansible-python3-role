@@ -4,3 +4,4 @@ python3_command: python3
 python3_shellrc: "{{ ansible_user_dir}}/.bash_profile"
 python3_local: "{{ ansible_user_dir}}/.local/bin"
 python3_pyenv: null
+python3_pip_extra_args: ""
